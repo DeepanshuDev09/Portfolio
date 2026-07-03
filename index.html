@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepanshu Joshi — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0D0F14;
+    --surface:#161922;
+    --surface-2:#1C2029;
+    --text:#E8EAF0;
+    --muted:#7C8494;
+    --muted-2:#565D6E;
+    --amber:#F0A93B;
+    --blue:#5B84FF;
+    --border:rgba(232,234,240,0.09);
+    --border-strong:rgba(232,234,240,0.16);
+    --radius:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--amber);color:#0D0F14;}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+
+  /* ---------- background texture ---------- */
+  .grid-bg{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+    opacity:0.6;
+  }
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;position:relative;z-index:1;}
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(13,15,20,0.75);
+    border-bottom:1px solid var(--border);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:920px;margin:0 auto;}
+  .logo{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:600;font-size:15px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber);}
+  .navlinks{display:flex;gap:28px;font-size:14px;color:var(--muted);}
+  .navlinks a{transition:color .2s;}
+  .navlinks a:hover{color:var(--text);}
+  .navlinks .cta{
+    color:var(--bg);background:var(--amber);
+    padding:8px 16px;border-radius:6px;font-weight:600;
+  }
+  .navlinks .cta:hover{filter:brightness(1.08);}
+  .navToggle{display:none;background:none;border:1px solid var(--border-strong);border-radius:6px;color:var(--text);padding:8px 10px;font-family:'JetBrains Mono',monospace;}
+
+  /* ---------- hero ---------- */
+  .hero{padding:110px 0 90px;position:relative;}
+  .terminal{
+    background:var(--surface);
+    border:1px solid var(--border-strong);
+    border-radius:var(--radius);
+    overflow:hidden;
+    max-width:620px;
+    box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
+    margin-bottom:42px;
+  }
+  .terminal-bar{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 14px;background:var(--surface-2);
+    border-bottom:1px solid var(--border);
+  }
+  .terminal-bar span{width:10px;height:10px;border-radius:50%;display:block;}
+  .terminal-bar span:nth-child(1){background:#5f5750;}
+  .terminal-bar span:nth-child(2){background:#5f5750;}
+  .terminal-bar span:nth-child(3){background:#5f5750;}
+  .terminal-bar .label{margin-left:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted-2);}
+  .terminal-body{padding:20px 22px;font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--muted);}
+  .terminal-body .line{margin-bottom:6px;}
+  .terminal-body .prompt{color:var(--amber);}
+  .terminal-body .out{color:var(--text);}
+  .cursor{display:inline-block;width:8px;height:15px;background:var(--amber);margin-left:2px;vertical-align:middle;animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  .hero h1{font-size:clamp(38px,6vw,60px);font-weight:700;line-height:1.05;margin-bottom:16px;}
+  .hero h1 .accent{color:var(--amber);}
+  .hero p.lede{font-size:17px;color:var(--muted);max-width:560px;margin-bottom:28px;}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;}
+  .badge{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    border:1px solid var(--border-strong);border-radius:100px;
+    padding:6px 14px;color:var(--muted);display:flex;align-items:center;gap:7px;
+  }
+  .badge .pulse{width:6px;height:6px;border-radius:50%;background:#3DDC6E;box-shadow:0 0 8px #3DDC6E;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    padding:12px 22px;border-radius:7px;font-weight:600;font-size:14.5px;
+    display:inline-flex;align-items:center;gap:8px;transition:all .2s;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--amber);color:#0D0F14;}
+  .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px);}
+  .btn-ghost{border-color:var(--border-strong);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber);}
+
+  /* ---------- section shell ---------- */
+  section{padding:90px 0;border-top:1px solid var(--border);}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--amber);
+    text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--amber);}
+  .section-title{font-size:clamp(26px,4vw,34px);font-weight:600;margin-bottom:44px;max-width:600px;}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;}
+  .about-grid p{color:var(--muted);margin-bottom:16px;font-size:15.5px;}
+  .about-grid strong{color:var(--text);font-weight:600;}
+  .stat-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:22px;margin-bottom:14px;
+  }
+  .stat-card .num{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--amber);}
+  .stat-card .cap{font-size:13px;color:var(--muted);margin-top:4px;}
+  @media (max-width:760px){.about-grid{grid-template-columns:1fr;}}
+
+  /* ---------- experience: commit log ---------- */
+  .log{border-left:1px solid var(--border-strong);margin-left:6px;}
+  .commit{position:relative;padding:0 0 40px 34px;}
+  .commit:last-child{padding-bottom:4px;}
+  .commit::before{
+    content:'';position:absolute;left:-6px;top:4px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--amber);
+  }
+  .commit-hash{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--blue);margin-bottom:6px;display:block;}
+  .commit-title{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin-bottom:4px;}
+  .commit-meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted-2);margin-bottom:12px;display:flex;gap:14px;flex-wrap:wrap;}
+  .commit-body{color:var(--muted);font-size:15px;max-width:600px;}
+  .commit-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+  .commit-tags span{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);
+    border:1px solid var(--border);border-radius:5px;padding:3px 9px;
+  }
+
+  /* ---------- skills ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .skill-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;
+    transition:border-color .2s, transform .2s;
+  }
+  .skill-card:hover{border-color:var(--border-strong);transform:translateY(-2px);}
+  .skill-card h3{font-size:14px;font-family:'JetBrains Mono',monospace;color:var(--amber);margin-bottom:14px;letter-spacing:0.04em;}
+  .skill-card ul{list-style:none;}
+  .skill-card li{color:var(--muted);font-size:14.5px;padding:5px 0;display:flex;align-items:center;gap:9px;}
+  .skill-card li::before{content:'';width:5px;height:5px;background:var(--muted-2);border-radius:1px;flex-shrink:0;}
+  @media (max-width:860px){.skills-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:520px){.skills-grid{grid-template-columns:1fr;}}
+
+  /* ---------- education ---------- */
+  .edu-card{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:24px;
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;flex-wrap:wrap;
+  }
+  .edu-card h3{font-size:19px;margin-bottom:6px;}
+  .edu-card p{color:var(--muted);font-size:14.5px;}
+  .edu-card .years{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--amber);white-space:nowrap;}
+
+  /* ---------- contact ---------- */
+  .contact-panel{
+    background:var(--surface);border:1px solid var(--border-strong);border-radius:14px;
+    padding:52px;text-align:center;position:relative;overflow:hidden;
+  }
+  .contact-panel::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 0%, rgba(240,169,59,0.10), transparent 60%);
+  }
+  .contact-panel h2{font-size:clamp(24px,4vw,32px);margin-bottom:12px;position:relative;}
+  .contact-panel p{color:var(--muted);margin-bottom:28px;position:relative;max-width:440px;margin-left:auto;margin-right:auto;}
+  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;}
+
+  footer{padding:32px 0;text-align:center;color:var(--muted-2);font-size:13px;font-family:'JetBrains Mono',monospace;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (max-width:640px){
+    .navlinks{display:none;}
+    .navToggle{display:block;}
+    .navlinks.open{
+      display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;
+      background:var(--surface);padding:20px 28px;border-bottom:1px solid var(--border);gap:16px;
+    }
+    section{padding:64px 0;}
+    .contact-panel{padding:32px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<header>
+  <nav>
+    <div class="logo"><span class="dot"></span>deepanshu.dev</div>
+    <div class="navlinks" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact" class="cta">Contact</a>
+    </div>
+    <button class="navToggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span></span><span></span><span></span>
+        <span class="label">deepanshu@portfolio: ~</span>
+      </div>
+      <div class="terminal-body" id="termBody">
+        <div class="line"><span class="prompt">$</span> whoami</div>
+        <div class="line"><span class="out">></span> <span class="out" id="typeTarget"></span><span class="cursor"></span></div>
+      </div>
+    </div>
+
+    <h1>Deepanshu Joshi —<br>building at the edge of <span class="accent">code &amp; Web3.</span></h1>
+    <p class="lede">CS graduate from Don Bosco Institute of Technology (9.2 CGPA). I've spent the last few years shipping crypto project operations, debugging Android apps, and building across Python, C++, JavaScript, React and Node.js.</p>
+
+    <div class="badges">
+      <span class="badge"><span class="pulse"></span>Open to frontend roles</span>
+      <span class="badge">Web3 &amp; crypto ops</span>
+      <span class="badge">Android dev</span>
+      <span class="badge">Delhi, India</span>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary">Get in touch</a>
+      <a href="#experience" class="btn btn-ghost">View experience</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="eyebrow">About</div>
+    <h2 class="section-title reveal">A builder who learned systems from the inside out.</h2>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I'm <strong>Deepanshu Joshi</strong>, a Computer Science graduate from <strong>Don Bosco Institute of Technology</strong>, finishing with a <strong>9.2 CGPA</strong>. My interest in technology started with a simple pull toward problem-solving — that pull has since taken me through Web3 operations, Android development, and a lot of late-night debugging.</p>
+        <p>Freelancing across several crypto projects taught me things a classroom can't: how to run IT operations under real deadlines, manage project content, and keep distributed teams aligned on systems that actually need to work.</p>
+        <p>A summer internship in <strong>Android app development</strong> sharpened that further — designing mobile interfaces, chasing down bugs, and learning to build things people actually use.</p>
+        <p>Right now, I'm looking to bring that mix of logical thinking and hands-on experience into a team where I can keep learning from people who've been doing this longer than I have.</p>
+      </div>
+      <div class="reveal">
+        <div class="stat-card"><div class="num">2+</div><div class="cap">Years freelancing across crypto/Web3 projects</div></div>
+        <div class="stat-card"><div class="num">1</div><div class="cap">Android dev internship completed</div></div>
+        <div class="stat-card"><div class="num">9.2</div><div class="cap">CGPA — B.Tech, Computer Science</div></div>
+        <div class="stat-card"><div class="num">5</div><div class="cap">Languages &amp; frameworks — C++, Python, JS, React, Node.js</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="eyebrow">Experience</div>
+    <h2 class="section-title reveal">Logged chronologically, like it should be.</h2>
+
+    <div class="log">
+      <div class="commit reveal">
+        <span class="commit-hash">#a1a03fa</span>
+        <div class="commit-title">Android App Development — Summer Intern</div>
+        <div class="commit-meta"><span>Summer Internship</span><span>Mobile Development</span></div>
+        <p class="commit-body">Designed and built mobile application features end-to-end, working through the full cycle from layout to logic. Spent most of the internship deep in debugging — the kind of work that teaches you patience and precision in equal measure.</p>
+        <div class="commit-tags"><span>Android</span><span>App Design</span><span>Debugging</span></div>
+      </div>
+
+      <div class="commit reveal">
+        <span class="commit-hash">#7c2e91d</span>
+        <div class="commit-title">Freelance IT &amp; Project Operations — Crypto Projects</div>
+        <div class="commit-meta"><span>Freelance</span><span>Web3 / Crypto</span></div>
+        <p class="commit-body">Managed IT operations and project content across multiple crypto ventures. Worked directly on system integration and coordination, gaining a practical understanding of how distributed, fast-moving teams actually ship.</p>
+        <div class="commit-tags"><span>Web3</span><span>Systems Integration</span><span>Project Ops</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="eyebrow">Skills</div>
+    <h2 class="section-title reveal">The toolkit, organized by what it's for.</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>LANGUAGES</h3>
+        <ul><li>C++</li><li>Python</li><li>JavaScript</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>WEB DEVELOPMENT</h3>
+        <ul><li>React</li><li>Node.js</li><li>Frontend Design</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>WEB3 &amp; OPERATIONS</h3>
+        <ul><li>Crypto Project Management</li><li>IT Operations</li><li>System Integration</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>MOBILE &amp; DEBUGGING</h3>
+        <ul><li>Android App Development</li><li>App Design</li><li>Debugging &amp; QA</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="eyebrow">Education</div>
+    <h2 class="section-title reveal">Finished strong.</h2>
+    <div class="edu-card reveal">
+      <div>
+        <h3>Bachelor of Computer Science</h3>
+        <p>Don Bosco Institute of Technology</p>
+      </div>
+      <div class="years">9.2 CGPA · COMPLETED</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-panel reveal">
+      <h2>Let's build something together.</h2>
+      <p>Open to frontend and junior developer roles — happy to talk about Web3, Android, or anything that needs a systems thinker.</p>
+      <div class="contact-links">
+        <a href="mailto:your.email@example.com" class="btn btn-primary">Email me</a>
+        <a href="#" class="btn btn-ghost">LinkedIn</a>
+        <a href="#" class="btn btn-ghost">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Deepanshu Joshi — built with intent, not a template.</div>
+</footer>
+
+<script>
+  // cycling typewriter effect in terminal
+  const roles = [
+    "frontend developer",
+    "android developer",
+    "problem solver",
+    "web3 developer"
+  ];
+  const target = document.getElementById('typeTarget');
+  let roleIndex = 0, charIndex = 0, deleting = false;
+
+  function tick(){
+    const current = roles[roleIndex];
+    if(!deleting){
+      charIndex++;
+      target.textContent = current.slice(0, charIndex);
+      if(charIndex === current.length){
+        deleting = true;
+        setTimeout(tick, 1400);   // pause on full word
+        return;
+      }
+      setTimeout(tick, 65);
+    } else {
+      charIndex--;
+      target.textContent = current.slice(0, charIndex);
+      if(charIndex === 0){
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(tick, 300);
+        return;
+      }
+      setTimeout(tick, 35);
+    }
+  }
+  tick();
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navlinks = document.getElementById('navlinks');
+  navToggle.addEventListener('click', ()=> navlinks.classList.toggle('open'));
+  navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>navlinks.classList.remove('open')));
+</script>
+
+</body>
+</html>
