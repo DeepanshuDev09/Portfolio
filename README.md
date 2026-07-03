@@ -58,26 +58,6 @@ A few placeholders still need your real info — search `index.html` for these:
   ```
 - **Experience entries** — each is a `.commit` block inside `<section id="experience">`. Copy the block to add a new role.
 
-## Deploying
 
-Since it's a static single file, any of these work in a few minutes:
-
-**GitHub Pages**
-1. Push this repo to GitHub.
-2. Repo → Settings → Pages → set source to the `main` branch, root folder.
-3. Your site will be live at `https://<username>.github.io/<repo-name>/`.
-
-**Netlify / Vercel**
-1. Drag and drop the folder onto [netlify.com/drop](https://app.netlify.com/drop), or connect the repo on Vercel.
-2. No build command needed — it's static HTML.
-
-**Any static host**
-Just upload `index.html`. That's the whole site.
-
-## Browser support
-
-Uses modern but widely-supported CSS (custom properties, `backdrop-filter`, CSS Grid) and vanilla JS (`IntersectionObserver`). Works in current versions of Chrome, Firefox, Safari, and Edge. Respects `prefers-reduced-motion` for anyone with motion sensitivity.
 
 ---
-
-Built by Claude, for Deepanshu Joshi.
