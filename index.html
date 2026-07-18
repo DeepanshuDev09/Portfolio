@@ -185,6 +185,49 @@
   .skill-card li::before{content:'';width:5px;height:5px;background:var(--muted-2);border-radius:1px;flex-shrink:0;}
   @media (max-width:520px){.skills-grid{grid-template-columns:1fr;}}
 
+  /* ---------- projects ---------- */
+  .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  .project-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    overflow:hidden;transition:border-color .2s, transform .2s;
+  }
+  .project-card:hover{border-color:var(--border-strong);transform:translateY(-3px);}
+  .project-shot{
+    aspect-ratio:16/9;background:
+      linear-gradient(135deg, var(--surface-2) 0%, #12141b 100%);
+    border-bottom:1px solid var(--border);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+    color:var(--muted-2);position:relative;overflow:hidden;
+  }
+  .project-shot::before{
+    content:'';position:absolute;inset:0;
+    background-image:linear-gradient(var(--border) 1px, transparent 1px),linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size:28px 28px;opacity:0.5;
+  }
+  .project-shot svg{width:38px;height:38px;position:relative;opacity:0.7;}
+  .project-shot span{font-family:'JetBrains Mono',monospace;font-size:11.5px;position:relative;letter-spacing:0.04em;}
+  .project-body{padding:22px;}
+  .project-body h3{font-size:19px;margin-bottom:6px;}
+  .project-live{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);
+    display:inline-flex;align-items:center;gap:6px;margin-bottom:12px;
+  }
+  .project-live .pulse{width:6px;height:6px;border-radius:50%;background:#3DDC6E;box-shadow:0 0 8px #3DDC6E;}
+  .project-body p{color:var(--muted);font-size:14.5px;margin-bottom:14px;}
+  .project-features{list-style:none;margin-bottom:16px;}
+  .project-features li{color:var(--muted);font-size:13.5px;padding:3px 0;padding-left:16px;position:relative;}
+  .project-features li::before{content:'—';position:absolute;left:0;color:var(--muted-2);}
+  .project-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;}
+  .project-tags span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:3px 8px;}
+  .project-links{display:flex;gap:10px;}
+  .project-links a{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;
+    padding:8px 14px;border-radius:6px;display:inline-flex;align-items:center;gap:6px;
+  }
+  .project-links .live{background:var(--amber);color:#0D0F14;}
+  .project-links .live:hover{filter:brightness(1.08);}
+  @media (max-width:760px){.projects-grid{grid-template-columns:1fr;}}
+
   /* ---------- education ---------- */
   .edu-card{
     display:flex;justify-content:space-between;align-items:flex-start;gap:24px;
@@ -237,6 +280,7 @@
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
       <a href="#education">Education</a>
       <a style="margin-top: -5px;" href="#contact" class="cta">Contact</a>
     </div>
@@ -344,6 +388,64 @@
         <h3>DATA STRUCTURES &amp; ALGORITHMS</h3>
         <ul><li>Array &amp; String</li><li>Hashing</li><li>Searching &amp; Sorting</li><li>Dynamic Programming</li><li>Bit Manipulation</li></ul>
       </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="eyebrow">Projects</div>
+    <h2 class="section-title reveal">Things I've shipped and deployed.</h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-shot">
+          <img src="./assets/project-1.png" >
+        </div>
+        <div class="project-body">
+          <h3>TradeLab AI</h3>
+          <a href="https://trade-lab-ai.vercel.app/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>trade-lab-ai.vercel.app</a>
+          <p>A unified backtesting and strategy platform for forex, stocks, and crypto. Pulls live candle data from Binance, lets you build and save trading strategies, and backtests them — including strategies described in plain English and converted to code by AI.</p>
+          <ul class="project-features">
+            <li>Multi-asset live OHLCV candle data from Binance, any symbol/timeframe (1m–1d)</li>
+            <li>TradingView-style interactive charting with symbol switching</li>
+            <li>Manual strategy builder — EMA Crossover, RSI, MACD, Bollinger Bands with custom risk settings</li>
+            <li>AI Strategy Builder — plain-English strategy → runnable Python via a free LLM (OpenRouter)</li>
+            <li>Local-first strategy storage in the browser, nothing sent until you backtest</li>
+            <li>Backtest engine reporting win rate, total return, max drawdown, profit factor</li>
+          </ul>
+          <div class="project-tags">
+            <span>React</span><span>Tailwind CSS</span><span>Node.js</span><span>Express</span><span>Binance API</span><span>OpenRouter</span>
+          </div>
+          <div class="project-links">
+            <a href="https://trade-lab-ai.vercel.app/" target="_blank" rel="noopener" class="live">Live App ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-shot">
+         <img src="./assets/project-2.jpeg" >
+        </div>
+        <div class="project-body">
+          <h3>Quantum Edge</h3>
+          <a href="https://quantum-edge-beta.vercel.app/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>quantum-edge-beta.vercel.app</a>
+          <p>A full-stack BTC/USDT live trading analyzer. Streams live market data straight from Binance and runs every technical indicator through hand-written Python — no external TA libraries.</p>
+          <ul class="project-features">
+            <li>Python backend built on FastAPI with a custom algo engine</li>
+            <li>Live BTC/USDT data via Binance WebSocket stream</li>
+            <li>TradingView Lightweight Charts on an HTML/JS frontend</li>
+            <li>Every indicator implemented in pure Python — zero external TA libraries</li>
+          </ul>
+          <div class="project-tags">
+            <span>Python</span><span>FastAPI</span><span>WebSockets</span><span>HTML/JS</span><span>Lightweight Charts</span>
+          </div>
+          <div class="project-links">
+            <a href="https://quantum-edge-beta.vercel.app/" target="_blank" rel="noopener" class="live">Live App ↗</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
