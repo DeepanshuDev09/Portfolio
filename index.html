@@ -6,6 +6,7 @@
 <title>Deepanshu Joshi — Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -58,7 +59,7 @@
     pointer-events:none;
   }
 
-  .wrap{max-width:920px;margin:0 auto;padding:0 28px;position:relative;z-index:1;}
+  .wrap{max-width:1300px;margin:0 auto;padding:0 28px;position:relative;z-index:1;}
 
   /* ---------- nav ---------- */
   header{
@@ -67,7 +68,7 @@
     background:rgba(13,15,20,0.75);
     border-bottom:1px solid var(--border);
   }
-  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:920px;margin:0 auto;}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1320px;margin:0 auto;}
   .logo{
     font-family:'JetBrains Mono',monospace;
     font-weight:600;font-size:15px;
@@ -320,6 +321,16 @@
     </div>
   </section>
 
+  <div>
+    <img style="margin-left:15px; border-radius: 30px;" width="1200px" src="./assets/banner.png" >
+    <!-- <h1 style="display: flex; justify-content: center; padding: 10px;">Social links and handles</h1> -->
+    <!-- <div style="display: flex; justify-content: center; gap: 30px; font-size: 30px;">
+    <a href="" ><i class="fa-brands fa-github"></i></a>
+    <a href=""><i class="fa-brands fa-leetcode"></i></a>
+    <a href=""><i class="fa-brands fa-linkedin"></i></a>
+    </div> -->
+  </div>
+
   <!-- ABOUT -->
   <section id="about">
     <div class="eyebrow">About</div>
@@ -369,25 +380,29 @@
     <div class="eyebrow">Skills</div>
     <h2 class="section-title reveal">The toolkit, organized by what it's for.</h2>
     <div class="skills-grid">
-      <div class="skill-card reveal">
-        <h3>LANGUAGES</h3>
-        <ul><li>C++</li><li>Python</li><li>JavaScript</li></ul>
-      </div>
-      <div class="skill-card reveal">
-        <h3>WEB DEVELOPMENT</h3>
-        <ul><li>React</li><li>Node.js</li><li>Frontend Design</li></ul>
-      </div>
-      <div class="skill-card reveal">
-        <h3>WEB3 &amp; OPERATIONS</h3>
-        <ul><li>Crypto Project Management</li><li>IT Operations</li><li>System Integration</li></ul>
-      </div>
-      <div class="skill-card reveal">
-        <h3>MOBILE &amp; DEBUGGING</h3>
-        <ul><li>Android App Development</li><li>App Design</li><li>Debugging &amp; QA</li></ul>
-      </div>
-      <div class="skill-card reveal">
+        <div class="skill-card reveal">
         <h3>DATA STRUCTURES &amp; ALGORITHMS</h3>
         <ul><li>Array &amp; String</li><li>Hashing</li><li>Searching &amp; Sorting</li><li>Dynamic Programming</li><li>Bit Manipulation</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>FRONTEND</h3>
+        <ul>
+            <li>React.js</li><li>Next.js</li><li>JavaScript (ES6+)</li><li>Tailwind CSS</li><li>Responsive UI</li> <li>Component-Based Architecture</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>BACKEND</h3>
+        <ul>
+            <li>Node.js</li><li>Python</li><li>Express.js</li><li>FastAPI</li><li>REST API Design</li><li>WebSockets</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>DATABASE &amp; CACHING</h3>
+        <ul><li>MongoDB</li><li>PostgreSQL</li><li>SQL</li><li>Redis</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>DevOps &amp; Deployment:</h3>
+        <ul><li>CI/CD pipelines</li><li>Cpanel Deployment</li><li>Git &amp; Github</li><li>Vercel Deployment </li></ul>
       </div>
     </div>
   </section>
@@ -447,6 +462,31 @@
         </div>
       </div>
 
+      <div class="project-card reveal">
+        <div class="project-shot">
+          <img src="./assets/project-3.png" alt="Quantum Edge screenshot">
+        </div>
+        <div class="project-body">
+          <h3>🚀 SHORTIX</h3>
+          <a href="https://shortix-three.vercel.app/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>shortix-three.vercel.app</a>
+          <p>A modern, full-stack URL Shortener. Create, manage, and analyze short URLs with powerful analytics, authentication, QR code generation, and advanced link management.</p>
+          <ul class="project-features">
+            <li>🔗 URL Shortening - Create short URLs, Generate unique short codes, Custom aliases, Instant redirection</li>
+            <li>📊 Analytics - Total clicks, Click history, Browser analytics, Device analytics, Referrer tracking, Visitor statistics</li>
+            <li>📂 Authentication - Google Login, GitHub Login, Protected Dashboard, User-specific URLs</li>
+            <li>📂 Dashboard - Manage all links, Edit URLs, Delete URLs, Copy short URLs, Search links, Filter links</li>
+            <li>🔐 Security - Password protected URLs, Link expiration, Input validation, Secure authentication</li>
+          </ul>
+          <div class="project-tags">
+            <span>NextJS</span><span>Next.js Route Handlers</span><span>PostgreSQL</span><span>Redis</span> 
+            <span>Rate Limiting</span><span>TypeScript</span><span>CI/CD</span>
+          </div>
+          <div class="project-links">
+            <a href="https://shortix-three.vercel.app/" target="_blank" rel="noopener" class="live">Live App ↗</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -470,7 +510,7 @@
       <p>Open to frontend and junior developer roles — happy to talk about Web3, Android, or anything that needs a systems thinker.</p>
       <div class="contact-links">
         <a href="mailto:deepanshujoshi901@gmail.com" class="btn btn-primary">Email me</a>
-        <a href="https://www.linkedin.com/in/deepanshu-joshi-015569350?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/deepanshudev09" class="btn btn-ghost">LinkedIn</a>
         <a href="https://github.com/deepanshudev09" class="btn btn-ghost">GitHub</a>
       </div>
     </div>
