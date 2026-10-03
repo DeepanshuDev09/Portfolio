@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Deepanshu Joshi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="shortcut icon" href="./assets/image.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0D0F14;--surface:#161922;--surface-2:#1C2029;--text:#E8EAF0;--muted:#7C8494;--muted-2:#565D6E;
+    --amber:#F0A93B;--blue:#5B84FF;--border:rgba(232,234,240,0.09);--border-strong:rgba(232,234,240,0.16);--radius:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--amber);color:#0D0F14;}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition-duration:0.01ms !important;}}
+
+  .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+    background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);opacity:0.6;}
+  .wrap{max-width:1300px;margin:0 auto;padding:0 28px;position:relative;z-index:1;}
+
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(13,15,20,0.75);border-bottom:1px solid var(--border);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1320px;margin:0 auto;}
+  .logo{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber);}
+  .navlinks{display:flex;gap:28px;font-size:14px;color:var(--muted);align-items:center;}
+  .navlinks a{transition:color .2s;}
+  .navlinks a:hover,.navlinks a.active{color:var(--text);}
+  .navlinks .cta{color:var(--bg);background:var(--amber);padding:8px 16px;border-radius:6px;font-weight:600;}
+  .navlinks .cta:hover{color:var(--bg);filter:brightness(1.08);}
+  @media (max-width:640px){.navlinks{gap:14px;font-size:13px;}.navlinks .hide-sm{display:none;}}
+
+  .page-head{padding:80px 0 36px;}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--amber);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--amber);}
+  .page-head h1{font-size:clamp(34px,5.5vw,52px);font-weight:700;line-height:1.08;margin-bottom:14px;}
+  .page-head p{color:var(--muted);max-width:560px;font-size:16.5px;}
+
+  /* filters */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;padding:8px 0 40px;}
+  .filter{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;cursor:pointer;
+    background:transparent;color:var(--muted);border:1px solid var(--border-strong);border-radius:100px;
+    padding:8px 16px;display:inline-flex;align-items:center;gap:8px;transition:all .2s;
+  }
+  .filter .count{font-size:11px;color:var(--muted-2);}
+  .filter:hover{color:var(--text);border-color:var(--muted);}
+  .filter.active{background:var(--amber);color:#0D0F14;border-color:var(--amber);font-weight:600;}
+  .filter.active .count{color:#0D0F14;opacity:.7;}
+
+  /* category groups */
+  .group{margin-bottom:64px;}
+  .group[hidden]{display:none;}
+  .group-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:26px;}
+  .group-head h2{font-size:24px;font-weight:600;}
+  .group-head span{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted-2);}
+
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:26px;}
+  .project-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .2s,transform .2s;}
+  .project-card:hover{border-color:var(--border-strong);transform:translateY(-3px);}
+  .project-card[hidden]{display:none;}
+  .project-shot{aspect-ratio:16/9;background:linear-gradient(135deg,var(--surface-2),#12141b);border-bottom:1px solid var(--border);overflow:hidden;}
+  .project-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+  .project-body{padding:22px;}
+  .project-body h3{font-size:19px;margin-bottom:6px;}
+  .project-live{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);display:inline-flex;align-items:center;gap:6px;margin-bottom:12px;}
+  .pulse{width:6px;height:6px;border-radius:50%;background:#3DDC6E;box-shadow:0 0 8px #3DDC6E;}
+  .project-body p{color:var(--muted);font-size:14.5px;margin-bottom:14px;}
+  .project-features{list-style:none;margin-bottom:16px;}
+  .project-features li{color:var(--muted);font-size:13.5px;padding:3px 0 3px 16px;position:relative;}
+  .project-features li::before{content:'—';position:absolute;left:0;color:var(--muted-2);}
+  .project-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;}
+  .project-tags span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:3px 8px;}
+  .project-links a{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;padding:8px 14px;border-radius:6px;display:inline-flex;background:var(--amber);color:#0D0F14;}
+  .project-links a:hover{filter:brightness(1.08);}
+
+  .empty{display:none;color:var(--muted);padding:30px 0;}
+  footer{padding:32px 0;text-align:center;color:var(--muted-2);font-size:13px;font-family:'JetBrains Mono',monospace;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<header>
+  <nav>
+    <a href="./index.html" class="logo"><span class="dot"></span>deepanshu.dev</a>
+    <div class="navlinks">
+      <a class="hide-sm" href="./index.html#about">About</a>
+      <a class="hide-sm" href="./index.html#experience">Experience</a>
+      <a class="hide-sm" href="./index.html#skills">Skills</a>
+      <a class="active" href="./projects.html">Projects</a>
+      <a class="hide-sm" href="./index.html#education">Education</a>
+      <a href="./index.html#contact" class="cta">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">Projects</div>
+    <h1>Things I've shipped and deployed.</h1>
+    <p>Pick a category to narrow the list. Every project here is live and running in production.</p>
+  </div>
+
+  <div class="filters" id="filters" role="tablist" aria-label="Project categories"></div>
+
+  <div id="groups">
+
+    <!-- CATEGORY: Trading & Fintech -->
+    <div class="group" data-group="trading">
+      <div class="group-head"><h2>Trading &amp; Fintech</h2><span>live market data · algorithms</span></div>
+      <div class="projects-grid">
+
+        <article class="project-card" data-cats="trading">
+          <div class="project-shot"><img src="./assets/project-4.png" alt="openAlpha screenshot"></div>
+          <div class="project-body">
+            <h3>openAlpha</h3>
+            <a href="https://openalphax.vercel.app/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>openalphax.vercel.app</a>
+            <p>A free algorithmic trading signals platform for crypto Spot and Futures. Python algorithms scan the market around the clock and push signals to the platform through an API, each with clear entry, target and stop levels.</p>
+            <ul class="project-features">
+              <li>Python signal engine running 24/7 on a VPS, scanning 40+ pairs</li>
+              <li>REST API that receives signals from the engine and publishes them instantly</li>
+              <li>Live signals page with entry, stop-loss, take-profit and signal status</li>
+              <li>Performance and history pages for transparent signal tracking</li>
+              <li>Account login and a community channel on Telegram</li>
+            </ul>
+            <div class="project-tags"><span>Next.js</span><span>REST API</span><span>Prisma</span><span>Python</span><span>VPS</span></div>
+            <div class="project-links"><a href="https://openalphax.vercel.app/" target="_blank" rel="noopener">Live App ↗</a></div>
+          </div>
+        </article>
+
+        <article class="project-card" data-cats="trading ai">
+          <div class="project-shot"><img src="./assets/project-1.png" alt="TradeLab AI screenshot"></div>
+          <div class="project-body">
+            <h3>TradeLab AI</h3>
+            <a href="https://trade-lab-ai.vercel.app/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>trade-lab-ai.vercel.app</a>
+            <p>A unified backtesting and strategy platform for forex, stocks, and crypto. Pulls live candle data from Binance, lets you build and save trading strategies, and backtests them — including strategies described in plain English and converted to code by AI.</p>
+            <ul class="project-features">
+              <li>Multi-asset live OHLCV candle data from Binance, any symbol/timeframe (1m–1d)</li>
+              <li>TradingView-style interactive charting with symbol switching</li>
+              <li>Manual strategy builder — EMA Crossover, RSI, MACD, Bollinger Bands with custom risk settings</li>
+              <li>AI Strategy Builder — plain-English strategy → runnable Python via a free LLM (OpenRouter)</li>
+              <li>Local-first strategy storage in the browser, nothing sent until you backtest</li>
+              <li>Backtest engine reporting win rate, total return, max drawdown, profit factor</li>
+            </ul>
+            <div class="project-tags"><span>React</span><span>Tailwind CSS</span><span>Node.js</span><span>Express</span><span>Binance API</span><span>OpenRouter</span></div>
+            <div class="project-links"><a href="https://trade-lab-ai.vercel.app/" target="_blank" rel="noopener">Live App ↗</a></div>
+          </div>
+        </article>
+
+        <article class="project-card" data-cats="trading">
+          <div class="project-shot"><img src="./assets/project-2.jpeg" alt="Quantum Edge screenshot"></div>
+          <div class="project-body">
+            <h3>Quantum Edge</h3>
+            <a href="https://quantum-edge-beta.vercel.app/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>quantum-edge-beta.vercel.app</a>
+            <p>A full-stack BTC/USDT live trading analyzer. Streams live market data straight from Binance and runs every technical indicator through hand-written Python — no external TA libraries.</p>
+            <ul class="project-features">
+              <li>Python backend built on FastAPI with a custom algo engine</li>
+              <li>Live BTC/USDT data via Binance WebSocket stream</li>
+              <li>TradingView Lightweight Charts on an HTML/JS frontend</li>
+              <li>Every indicator implemented in pure Python — zero external TA libraries</li>
+            </ul>
+            <div class="project-tags"><span>Python</span><span>FastAPI</span><span>WebSockets</span><span>HTML/JS</span><span>Lightweight Charts</span></div>
+            <div class="project-links"><a href="https://quantum-edge-beta.vercel.app/" target="_blank" rel="noopener">Live App ↗</a></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- CATEGORY: Full-Stack Web Apps -->
+    <div class="group" data-group="fullstack">
+      <div class="group-head"><h2>Full-Stack Web Apps</h2><span>auth · databases · deployment</span></div>
+      <div class="projects-grid">
+
+        <article class="project-card" data-cats="fullstack">
+          <div class="project-shot"><img src="./assets/project-3.png" alt="Shortix screenshot"></div>
+          <div class="project-body">
+            <h3>🚀 SHORTIX</h3>
+            <a href="https://shortix-three.vercel.app/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>shortix-three.vercel.app</a>
+            <p>A modern, full-stack URL Shortener. Create, manage, and analyze short URLs with powerful analytics, authentication, QR code generation, and advanced link management.</p>
+            <ul class="project-features">
+              <li>🔗 URL Shortening - Create short URLs, Generate unique short codes, Custom aliases, Instant redirection</li>
+              <li>📊 Analytics - Total clicks, Click history, Browser analytics, Device analytics, Referrer tracking, Visitor statistics</li>
+              <li>📂 Authentication - Google Login, GitHub Login, Protected Dashboard, User-specific URLs</li>
+              <li>📂 Dashboard - Manage all links, Edit URLs, Delete URLs, Copy short URLs, Search links, Filter links</li>
+              <li>🔐 Security - Password protected URLs, Link expiration, Input validation, Secure authentication</li>
+            </ul>
+            <div class="project-tags"><span>NextJS</span><span>Next.js Route Handlers</span><span>PostgreSQL</span><span>Redis</span><span>Rate Limiting</span><span>TypeScript</span><span>CI/CD</span></div>
+            <div class="project-links"><a href="https://shortix-three.vercel.app/" target="_blank" rel="noopener">Live App ↗</a></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- CATEGORY: Frontend & React -->
+    <div class="group" data-group="frontend">
+      <div class="group-head"><h2>Frontend &amp; React</h2><span>components · state · routing</span></div>
+      <div class="projects-grid">
+
+        <article class="project-card" data-cats="frontend">
+          <div class="project-shot"><img src="./assets/project-6.png" alt="TextUtils screenshot"></div>
+          <div class="project-body">
+            <h3>TextUtils</h3>
+            <a href="https://github.com/DeepanshuDev09/TextUtils" target="_blank" rel="noopener" class="project-live"><i class="fa-brands fa-github"></i>github.com/DeepanshuDev09/TextUtils</a>
+            <p>A React app for working on text in the browser. Paste or type, transform it in one click and see live stats. This is where I learned React fundamentals: components, props, state and routing.</p>
+            <ul class="project-features">
+              <li>One-click text transforms: uppercase, lowercase and clear</li>
+              <li>Copy to clipboard and extra-space removal</li>
+              <li>Live word count, character count and reading time</li>
+              <li>Dark mode toggle and in-app alerts for user feedback</li>
+              <li>Multi-page navigation with React Router</li>
+            </ul>
+            <div class="project-tags"><span>React</span><span>JavaScript (ES6+)</span><span>React Router</span><span>Hooks</span><span>Props &amp; State</span></div>
+            <div class="project-links"><a href="https://github.com/DeepanshuDev09/TextUtils" target="_blank" rel="noopener">View on GitHub ↗</a></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- CATEGORY: Client Work -->
+    <div class="group" data-group="client">
+      <div class="group-head"><h2>Client Work</h2><span>built for real businesses</span></div>
+      <div class="projects-grid">
+
+        <article class="project-card" data-cats="client">
+          <div class="project-shot"><img src="./assets/project-5.png" alt="Maa Barahi screenshot"></div>
+          <div class="project-body">
+            <h3>Maa Barahi Colonizers &amp; Builders</h3>
+            <a href="https://maabarahi.site/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>maabarahi.site</a>
+            <p>A real estate website I built for a plot and house developer in Rudrapur and Dineshpur, Uttarakhand. Buyers can browse listings, explore a live site layout and book a site visit directly with the developer.</p>
+            <ul class="project-features">
+              <li>Property listings for plots, ready-to-move and under-construction houses</li>
+              <li>Interactive, zoomable site layout map with plot numbers and sizes</li>
+              <li>Site visit enquiry form with validation and clear success state</li>
+              <li>Customer reviews, FAQ, promo video and embedded office map</li>
+              <li>Local SEO metadata and social sharing tags for search visibility</li>
+              <li>Fully responsive, built for buyers browsing on mobile</li>
+            </ul>
+            <div class="project-tags"><span>Next.js</span><span>Responsive UI</span><span>SEO</span><span>Form Validation</span><span>Google Maps Embed</span><span>Vercel</span></div>
+            <div class="project-links"><a href="https://maabarahi.site/" target="_blank" rel="noopener">Live Site ↗</a></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+  <p class="empty" id="empty">No projects in this category yet.</p>
+</main>
+
+<footer><div class="wrap">© 2026 Deepanshu Joshi — built with intent, not a template.</div></footer>
+
+<script>
+  // Add a new category: add it here, then give cards data-cats="id" and a matching group block.
+  const CATEGORIES = [
+    {id:'all', label:'All'},
+    {id:'trading', label:'Trading & Fintech'},
+    {id:'fullstack', label:'Full-Stack Web Apps'},
+    {id:'frontend', label:'Frontend & React'},
+    {id:'client', label:'Client Work'},
+    {id:'ai', label:'AI-Powered'}
+  ];
+
+  const filtersEl = document.getElementById('filters');
+  const cards = [...document.querySelectorAll('.project-card')];
+  const groups = [...document.querySelectorAll('.group')];
+  const emptyEl = document.getElementById('empty');
+
+  function countFor(id){
+    return id === 'all' ? cards.length : cards.filter(c => c.dataset.cats.split(' ').includes(id)).length;
+  }
+
+  CATEGORIES.forEach(cat => {
+    const b = document.createElement('button');
+    b.className = 'filter';
+    b.type = 'button';
+    b.dataset.id = cat.id;
+    b.setAttribute('role','tab');
+    b.innerHTML = cat.label + ' <span class="count">' + countFor(cat.id) + '</span>';
+    b.addEventListener('click', () => apply(cat.id));
+    filtersEl.appendChild(b);
+  });
+
+  function apply(id){
+    document.querySelectorAll('.filter').forEach(f => {
+      const on = f.dataset.id === id;
+      f.classList.toggle('active', on);
+      f.setAttribute('aria-selected', on);
+    });
+
+    if(id === 'all'){
+      // Show everything, grouped by category
+      cards.forEach(c => c.hidden = false);
+      groups.forEach(g => g.hidden = false);
+      emptyEl.style.display = 'none';
+    } else {
+      // Show every project tagged with the category (a project can live in more than one)
+      let shown = 0;
+      cards.forEach(c => {
+        const match = c.dataset.cats.split(' ').includes(id);
+        c.hidden = !match;
+        if(match) shown++;
+      });
+      groups.forEach(g => g.hidden = !g.querySelector('.project-card:not([hidden])'));
+      emptyEl.style.display = shown ? 'none' : 'block';
+    }
+    history.replaceState(null, '', id === 'all' ? location.pathname : '#' + id);
+  }
+
+  // Deep link, e.g. projects.html#trading
+  const initial = location.hash.slice(1);
+  apply(CATEGORIES.some(c => c.id === initial) ? initial : 'all');
+</script>
+</body>
+</html>
