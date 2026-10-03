@@ -11,28 +11,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0D0F14;
-    --surface:#161922;
-    --surface-2:#1C2029;
-    --text:#E8EAF0;
-    --muted:#7C8494;
-    --muted-2:#565D6E;
-    --amber:#F0A93B;
-    --blue:#5B84FF;
-    --border:rgba(232,234,240,0.09);
-    --border-strong:rgba(232,234,240,0.16);
-    --radius:10px;
+    --bg:#0D0F14;--surface:#161922;--surface-2:#1C2029;--text:#E8EAF0;--muted:#7C8494;--muted-2:#565D6E;
+    --amber:#F0A93B;--blue:#5B84FF;--border:rgba(232,234,240,0.09);--border-strong:rgba(232,234,240,0.16);--radius:10px;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
@@ -46,67 +30,34 @@
   /* ---------- background texture ---------- */
   .grid-bg{
     position:fixed;inset:0;z-index:0;pointer-events:none;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-image:linear-gradient(var(--border) 1px, transparent 1px),linear-gradient(90deg, var(--border) 1px, transparent 1px);
     background-size:64px 64px;
     -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
     mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
     opacity:0.6;
   }
-
-  #bgCanvas{
-    position:fixed;inset:0;z-index:0;width:100%;height:100%;
-    pointer-events:none;
-  }
-
+  #bgCanvas{position:fixed;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;}
   .wrap{max-width:1300px;margin:0 auto;padding:0 28px;position:relative;z-index:1;}
 
   /* ---------- nav ---------- */
-  header{
-    position:sticky;top:0;z-index:50;
-    backdrop-filter:blur(10px);
-    background:rgba(13,15,20,0.75);
-    border-bottom:1px solid var(--border);
-  }
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(13,15,20,0.75);border-bottom:1px solid var(--border);}
   nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1320px;margin:0 auto;}
-  .logo{
-    font-family:'JetBrains Mono',monospace;
-    font-weight:600;font-size:15px;
-    display:flex;align-items:center;gap:8px;
-  }
+  .logo{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;}
   .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber);}
   .navlinks{display:flex;gap:28px;font-size:14px;color:var(--muted);}
   .navlinks a{transition:color .2s;}
   .navlinks a:hover{color:var(--text);}
-  .navlinks .cta{
-    color:var(--bg);background:var(--amber);
-    padding:8px 16px;border-radius:6px;font-weight:600;
-  }
+  .navlinks .cta{color:var(--bg);background:var(--amber);padding:8px 16px;border-radius:6px;font-weight:600;}
   .navlinks .cta:hover{filter:brightness(1.08);}
   .navToggle{display:none;background:none;border:1px solid var(--border-strong);border-radius:6px;color:var(--text);padding:8px 10px;font-family:'JetBrains Mono',monospace;}
 
   /* ---------- hero ---------- */
   .hero{padding:110px 0 90px;position:relative;}
-  .terminal{
-    background:var(--surface);
-    border:1px solid var(--border-strong);
-    border-radius:var(--radius);
-    overflow:hidden;
-    max-width:620px;
-    box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
-    margin-bottom:42px;
-  }
-  .terminal-bar{
-    display:flex;align-items:center;gap:8px;
-    padding:10px 14px;background:var(--surface-2);
-    border-bottom:1px solid var(--border);
-  }
+  .terminal{background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius);overflow:hidden;max-width:620px;box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);margin-bottom:42px;}
+  .terminal-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--surface-2);border-bottom:1px solid var(--border);}
   .terminal-bar span{width:10px;height:10px;border-radius:50%;display:block;}
-  .terminal-bar span:nth-child(1){background:#5f5750;}
-  .terminal-bar span:nth-child(2){background:#5f5750;}
-  .terminal-bar span:nth-child(3){background:#5f5750;}
-  .terminal-bar .label{margin-left:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted-2);}
+  .terminal-bar span:nth-child(1),.terminal-bar span:nth-child(2),.terminal-bar span:nth-child(3){background:#5f5750;}
+  .terminal-bar .label{margin-left:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted-2);width:auto;height:auto;border-radius:0;background:none !important;}
   .terminal-body{padding:20px 22px;font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--muted);}
   .terminal-body .line{margin-bottom:6px;}
   .terminal-body .prompt{color:var(--amber);}
@@ -118,18 +69,10 @@
   .hero h1 .accent{color:var(--amber);}
   .hero p.lede{font-size:17px;color:var(--muted);max-width:560px;margin-bottom:28px;}
   .badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;}
-  .badge{
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;
-    border:1px solid var(--border-strong);border-radius:100px;
-    padding:6px 14px;color:var(--muted);display:flex;align-items:center;gap:7px;
-  }
+  .badge{font-family:'JetBrains Mono',monospace;font-size:12.5px;border:1px solid var(--border-strong);border-radius:100px;padding:6px 14px;color:var(--muted);display:flex;align-items:center;gap:7px;}
   .badge .pulse{width:6px;height:6px;border-radius:50%;background:#3DDC6E;box-shadow:0 0 8px #3DDC6E;}
   .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
-  .btn{
-    padding:12px 22px;border-radius:7px;font-weight:600;font-size:14.5px;
-    display:inline-flex;align-items:center;gap:8px;transition:all .2s;
-    border:1px solid transparent;
-  }
+  .btn{padding:12px 22px;border-radius:7px;font-weight:600;font-size:14.5px;display:inline-flex;align-items:center;gap:8px;transition:all .2s;border:1px solid transparent;}
   .btn-primary{background:var(--amber);color:#0D0F14;}
   .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px);}
   .btn-ghost{border-color:var(--border-strong);color:var(--text);}
@@ -137,10 +80,7 @@
 
   /* ---------- section shell ---------- */
   section{padding:90px 0;border-top:1px solid var(--border);}
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--amber);
-    text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;display:flex;align-items:center;gap:10px;
-  }
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--amber);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
   .eyebrow::before{content:'';width:22px;height:1px;background:var(--amber);}
   .section-title{font-size:clamp(26px,4vw,34px);font-weight:600;margin-bottom:44px;max-width:600px;}
 
@@ -148,38 +88,26 @@
   .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;}
   .about-grid p{color:var(--muted);margin-bottom:16px;font-size:15.5px;}
   .about-grid strong{color:var(--text);font-weight:600;}
-  .stat-card{
-    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-    padding:22px;margin-bottom:14px;
-  }
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:14px;}
   .stat-card .num{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--amber);}
   .stat-card .cap{font-size:13px;color:var(--muted);margin-top:4px;}
   @media (max-width:760px){.about-grid{grid-template-columns:1fr;}}
 
-  /* ---------- experience: commit log ---------- */
+  /* ---------- experience ---------- */
   .log{border-left:1px solid var(--border-strong);margin-left:6px;}
   .commit{position:relative;padding:0 0 40px 34px;}
   .commit:last-child{padding-bottom:4px;}
-  .commit::before{
-    content:'';position:absolute;left:-6px;top:4px;width:11px;height:11px;border-radius:50%;
-    background:var(--bg);border:2px solid var(--amber);
-  }
+  .commit::before{content:'';position:absolute;left:-6px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--amber);}
   .commit-hash{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--blue);margin-bottom:6px;display:block;}
   .commit-title{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin-bottom:4px;}
   .commit-meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted-2);margin-bottom:12px;display:flex;gap:14px;flex-wrap:wrap;}
   .commit-body{color:var(--muted);font-size:15px;max-width:600px;}
   .commit-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
-  .commit-tags span{
-    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);
-    border:1px solid var(--border);border-radius:5px;padding:3px 9px;
-  }
+  .commit-tags span{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:3px 9px;}
 
   /* ---------- skills ---------- */
   .skills-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));gap:20px;}
-  .skill-card{
-    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;
-    transition:border-color .2s, transform .2s;
-  }
+  .skill-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:border-color .2s, transform .2s;}
   .skill-card:hover{border-color:var(--border-strong);transform:translateY(-2px);}
   .skill-card h3{font-size:14px;font-family:'JetBrains Mono',monospace;color:var(--amber);margin-bottom:14px;letter-spacing:0.04em;}
   .skill-card ul{list-style:none;}
@@ -187,85 +115,37 @@
   .skill-card li::before{content:'';width:5px;height:5px;background:var(--muted-2);border-radius:1px;flex-shrink:0;}
   @media (max-width:520px){.skills-grid{grid-template-columns:1fr;}}
 
-  /* ---------- projects ---------- */
-  .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
-  .project-card{
-    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-    overflow:hidden;transition:border-color .2s, transform .2s;
+  /* ---------- projects preview ---------- */
+  .projects-intro{color:var(--muted);max-width:560px;margin:-20px 0 28px;font-size:15.5px;}
+  .project-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px;}
+  .project-chips a{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);
+    border:1px solid var(--border-strong);border-radius:100px;padding:7px 15px;transition:all .2s;
   }
-  .project-card:hover{border-color:var(--border-strong);transform:translateY(-3px);}
-  .project-shot{
-    aspect-ratio:16/9;background:
-      linear-gradient(135deg, var(--surface-2) 0%, #12141b 100%);
-    border-bottom:1px solid var(--border);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-    color:var(--muted-2);position:relative;overflow:hidden;
-  }
-  .project-shot::before{
-    content:'';position:absolute;inset:0;
-    background-image:linear-gradient(var(--border) 1px, transparent 1px),linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size:28px 28px;opacity:0.5;
-  }
-  .project-shot svg{width:38px;height:38px;position:relative;opacity:0.7;}
-  .project-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;position:relative;display:block;}
-  .project-shot span{font-family:'JetBrains Mono',monospace;font-size:11.5px;position:relative;letter-spacing:0.04em;}
-  .project-body{padding:22px;}
-  .project-body h3{font-size:19px;margin-bottom:6px;}
-  .project-live{
-    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);
-    display:inline-flex;align-items:center;gap:6px;margin-bottom:12px;
-  }
-  .project-live .pulse{width:6px;height:6px;border-radius:50%;background:#3DDC6E;box-shadow:0 0 8px #3DDC6E;}
-  .project-body p{color:var(--muted);font-size:14.5px;margin-bottom:14px;}
-  .project-features{list-style:none;margin-bottom:16px;}
-  .project-features li{color:var(--muted);font-size:13.5px;padding:3px 0;padding-left:16px;position:relative;}
-  .project-features li::before{content:'—';position:absolute;left:0;color:var(--muted-2);}
-  .project-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;}
-  .project-tags span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:3px 8px;}
-  .project-links{display:flex;gap:10px;}
-  .project-links a{
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;
-    padding:8px 14px;border-radius:6px;display:inline-flex;align-items:center;gap:6px;
-  }
-  .project-links .live{background:var(--amber);color:#0D0F14;}
-  .project-links .live:hover{filter:brightness(1.08);}
-  @media (max-width:760px){.projects-grid{grid-template-columns:1fr;}}
+  .project-chips a:hover{color:var(--amber);border-color:var(--amber);}
 
   /* ---------- education ---------- */
-  .edu-card{
-    display:flex;justify-content:space-between;align-items:flex-start;gap:24px;
-    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;flex-wrap:wrap;
-  }
+  .edu-card{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;flex-wrap:wrap;}
   .edu-card h3{font-size:19px;margin-bottom:6px;}
   .edu-card p{color:var(--muted);font-size:14.5px;}
   .edu-card .years{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--amber);white-space:nowrap;}
 
   /* ---------- contact ---------- */
-  .contact-panel{
-    background:var(--surface);border:1px solid var(--border-strong);border-radius:14px;
-    padding:52px;text-align:center;position:relative;overflow:hidden;
-  }
-  .contact-panel::before{
-    content:'';position:absolute;inset:0;
-    background:radial-gradient(circle at 50% 0%, rgba(240,169,59,0.10), transparent 60%);
-  }
+  .contact-panel{background:var(--surface);border:1px solid var(--border-strong);border-radius:14px;padding:52px;text-align:center;position:relative;overflow:hidden;}
+  .contact-panel::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%, rgba(240,169,59,0.10), transparent 60%);}
   .contact-panel h2{font-size:clamp(24px,4vw,32px);margin-bottom:12px;position:relative;}
   .contact-panel p{color:var(--muted);margin-bottom:28px;position:relative;max-width:440px;margin-left:auto;margin-right:auto;}
   .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;}
 
   footer{padding:32px 0;text-align:center;color:var(--muted-2);font-size:13px;font-family:'JetBrains Mono',monospace;}
 
-  /* reveal on scroll */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
   .reveal.in{opacity:1;transform:translateY(0);}
 
   @media (max-width:640px){
     .navlinks{display:none;}
     .navToggle{display:block;}
-    .navlinks.open{
-      display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;
-      background:var(--surface);padding:20px 28px;border-bottom:1px solid var(--border);gap:16px;
-    }
+    .navlinks.open{display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:var(--surface);padding:20px 28px;border-bottom:1px solid var(--border);gap:16px;}
     section{padding:64px 0;}
     .contact-panel{padding:32px 20px;}
   }
@@ -283,9 +163,9 @@
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
+      <a href="./projects.html">Projects</a>
       <a href="#education">Education</a>
-      <a style="margin-top: -5px;"  href="#contact" class="cta">Contact</a>
+      <a style="margin-top: -5px;" href="#contact" class="cta">Contact</a>
     </div>
     <button class="navToggle" id="navToggle" aria-label="Toggle menu">☰</button>
   </nav>
@@ -324,12 +204,6 @@
 
   <div style="padding: 0px 2px;" class="banner">
     <img style="border-radius: 30px;" width="100%" src="./assets/banner.png" >
-    <!-- <h1 style="display: flex; justify-content: center; padding: 10px;">Social links and handles</h1> -->
-    <!-- <div style="display: flex; justify-content: center; gap: 30px; font-size: 30px;">
-    <a href="" ><i class="fa-brands fa-github"></i></a>
-    <a href=""><i class="fa-brands fa-leetcode"></i></a>
-    <a href=""><i class="fa-brands fa-linkedin"></i></a>
-    </div> -->
   </div>
 
   <!-- ABOUT -->
@@ -381,21 +255,17 @@
     <div class="eyebrow">Skills</div>
     <h2 class="section-title reveal">The toolkit, organized by what it's for.</h2>
     <div class="skills-grid">
-        <div class="skill-card reveal">
+      <div class="skill-card reveal">
         <h3>DATA STRUCTURES &amp; ALGORITHMS</h3>
         <ul><li>Array &amp; String</li><li>Hashing</li><li>Searching &amp; Sorting</li><li>Dynamic Programming</li><li>Bit Manipulation</li></ul>
       </div>
       <div class="skill-card reveal">
         <h3>FRONTEND</h3>
-        <ul>
-            <li>React.js</li><li>Next.js</li><li>JavaScript (ES6+)</li><li>Tailwind CSS</li><li>Responsive UI</li> <li>Component-Based Architecture</li>
-        </ul>
+        <ul><li>React.js</li><li>Next.js</li><li>JavaScript (ES6+)</li><li>Tailwind CSS</li><li>Responsive UI</li><li>Component-Based Architecture</li></ul>
       </div>
       <div class="skill-card reveal">
         <h3>BACKEND</h3>
-        <ul>
-            <li>Node.js</li><li>Python</li><li>Express.js</li><li>FastAPI</li><li>REST API Design</li><li>WebSockets</li>
-        </ul>
+        <ul><li>Node.js</li><li>Python</li><li>Express.js</li><li>FastAPI</li><li>REST API Design</li><li>WebSockets</li></ul>
       </div>
       <div class="skill-card reveal">
         <h3>DATABASE &amp; CACHING</h3>
@@ -408,87 +278,18 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
+  <!-- PROJECTS (preview — full list lives on projects.html) -->
   <section id="projects">
     <div class="eyebrow">Projects</div>
     <h2 class="section-title reveal">Things I've shipped and deployed.</h2>
-
-    <div class="projects-grid">
-
-      <div class="project-card reveal">
-        <div class="project-shot">
-          <img src="./assets/project-1.png" alt="TradeLab AI screenshot">
-        </div>
-        <div class="project-body">
-          <h3>TradeLab AI</h3>
-          <a href="https://trade-lab-ai.vercel.app/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>trade-lab-ai.vercel.app</a>
-          <p>A unified backtesting and strategy platform for forex, stocks, and crypto. Pulls live candle data from Binance, lets you build and save trading strategies, and backtests them — including strategies described in plain English and converted to code by AI.</p>
-          <ul class="project-features">
-            <li>Multi-asset live OHLCV candle data from Binance, any symbol/timeframe (1m–1d)</li>
-            <li>TradingView-style interactive charting with symbol switching</li>
-            <li>Manual strategy builder — EMA Crossover, RSI, MACD, Bollinger Bands with custom risk settings</li>
-            <li>AI Strategy Builder — plain-English strategy → runnable Python via a free LLM (OpenRouter)</li>
-            <li>Local-first strategy storage in the browser, nothing sent until you backtest</li>
-            <li>Backtest engine reporting win rate, total return, max drawdown, profit factor</li>
-          </ul>
-          <div class="project-tags">
-            <span>React</span><span>Tailwind CSS</span><span>Node.js</span><span>Express</span><span>Binance API</span><span>OpenRouter</span>
-          </div>
-          <div class="project-links">
-            <a href="https://trade-lab-ai.vercel.app/" target="_blank" rel="noopener" class="live">Live App ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-shot">
-          <img src="./assets/project-2.jpeg" alt="Quantum Edge screenshot">
-        </div>
-        <div class="project-body">
-          <h3>Quantum Edge</h3>
-          <a href="https://quantum-edge-beta.vercel.app/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>quantum-edge-beta.vercel.app</a>
-          <p>A full-stack BTC/USDT live trading analyzer. Streams live market data straight from Binance and runs every technical indicator through hand-written Python — no external TA libraries.</p>
-          <ul class="project-features">
-            <li>Python backend built on FastAPI with a custom algo engine</li>
-            <li>Live BTC/USDT data via Binance WebSocket stream</li>
-            <li>TradingView Lightweight Charts on an HTML/JS frontend</li>
-            <li>Every indicator implemented in pure Python — zero external TA libraries</li>
-          </ul>
-          <div class="project-tags">
-            <span>Python</span><span>FastAPI</span><span>WebSockets</span><span>HTML/JS</span><span>Lightweight Charts</span>
-          </div>
-          <div class="project-links">
-            <a href="https://quantum-edge-beta.vercel.app/" target="_blank" rel="noopener" class="live">Live App ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-shot">
-          <img src="./assets/project-3.png" alt="Quantum Edge screenshot">
-        </div>
-        <div class="project-body">
-          <h3>🚀 SHORTIX</h3>
-          <a href="https://shortix-three.vercel.app/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>shortix-three.vercel.app</a>
-          <p>A modern, full-stack URL Shortener. Create, manage, and analyze short URLs with powerful analytics, authentication, QR code generation, and advanced link management.</p>
-          <ul class="project-features">
-            <li>🔗 URL Shortening - Create short URLs, Generate unique short codes, Custom aliases, Instant redirection</li>
-            <li>📊 Analytics - Total clicks, Click history, Browser analytics, Device analytics, Referrer tracking, Visitor statistics</li>
-            <li>📂 Authentication - Google Login, GitHub Login, Protected Dashboard, User-specific URLs</li>
-            <li>📂 Dashboard - Manage all links, Edit URLs, Delete URLs, Copy short URLs, Search links, Filter links</li>
-            <li>🔐 Security - Password protected URLs, Link expiration, Input validation, Secure authentication</li>
-          </ul>
-          <div class="project-tags">
-            <span>NextJS</span><span>Next.js Route Handlers</span><span>PostgreSQL</span><span>Redis</span> 
-            <span>Rate Limiting</span><span>TypeScript</span><span>CI/CD</span>
-          </div>
-          <div class="project-links">
-            <a href="https://shortix-three.vercel.app/" target="_blank" rel="noopener" class="live">Live App ↗</a>
-          </div>
-        </div>
-      </div>
-
+    <p class="projects-intro reveal">Trading tools, AI-powered apps, full-stack products, React experiments and client websites, all live.</p>
+    <div class="project-chips reveal">
+      <a href="./projects.html#trading">Trading &amp; Fintech</a>
+      <a href="./projects.html#fullstack">Full-Stack Web Apps</a>
+      <a href="./projects.html#frontend">Frontend &amp; React</a>
+      <a href="./projects.html#client">Client Work</a>
     </div>
+    <a href="./projects.html" class="btn btn-primary reveal">Explore all projects <i class="fa-solid fa-arrow-right"></i></a>
   </section>
 
   <!-- EDUCATION -->
@@ -524,7 +325,7 @@
 </footer>
 
 <script>
-  // ambient node-network background — evokes distributed systems / Web3
+  // ambient node-network background
   (function(){
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
@@ -536,10 +337,8 @@
       h = canvas.height = window.innerHeight;
       const count = Math.max(18, Math.min(46, Math.floor((w*h)/38000)));
       nodes = Array.from({length:count}, ()=>({
-        x: Math.random()*w,
-        y: Math.random()*h,
-        vx: (Math.random()-0.5)*0.18,
-        vy: (Math.random()-0.5)*0.18,
+        x: Math.random()*w, y: Math.random()*h,
+        vx: (Math.random()-0.5)*0.18, vy: (Math.random()-0.5)*0.18,
         r: Math.random()*1.6 + 1
       }));
     }
@@ -547,7 +346,6 @@
     function draw(){
       ctx.clearRect(0,0,w,h);
       const linkDist = Math.min(w,h) * 0.14;
-
       for(let i=0;i<nodes.length;i++){
         const a = nodes[i];
         if(!reduceMotion){
@@ -587,12 +385,7 @@
   })();
 
   // cycling typewriter effect in terminal
-  const roles = [
-    "frontend developer",
-    "android developer",
-    "problem solver",
-    "web3 developer"
-  ];
+  const roles = ["frontend developer","android developer","problem solver","web3 developer"];
   const target = document.getElementById('typeTarget');
   let roleIndex = 0, charIndex = 0, deleting = false;
 
@@ -603,7 +396,7 @@
       target.textContent = current.slice(0, charIndex);
       if(charIndex === current.length){
         deleting = true;
-        setTimeout(tick, 1400);   // pause on full word
+        setTimeout(tick, 1400);
         return;
       }
       setTimeout(tick, 65);
