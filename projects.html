@@ -83,6 +83,9 @@
   .project-tags span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:3px 8px;}
   .project-links a{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;padding:8px 14px;border-radius:6px;display:inline-flex;background:var(--amber);color:#0D0F14;}
   .project-links a:hover{filter:brightness(1.08);}
+  .project-links{display:flex;gap:10px;flex-wrap:wrap;}
+  .project-links a.ghost{background:transparent;color:var(--text);border:1px solid var(--border-strong);gap:7px;align-items:center;}
+  .project-links a.ghost:hover{border-color:var(--amber);color:var(--amber);filter:none;}
 
   .empty{display:none;color:var(--muted);padding:30px 0;}
   footer{padding:32px 0;text-align:center;color:var(--muted-2);font-size:13px;font-family:'JetBrains Mono',monospace;border-top:1px solid var(--border);}
@@ -213,7 +216,7 @@
           <div class="project-shot"><img src="./assets/project-6.png" alt="TextUtils screenshot"></div>
           <div class="project-body">
             <h3>TextUtils</h3>
-            <a href="https://github.com/DeepanshuDev09/TextUtils" target="_blank" rel="noopener" class="project-live"><i class="fa-brands fa-github"></i>github.com/DeepanshuDev09/TextUtils</a>
+            <a href="https://text-utils-six-azure.vercel.app/" target="_blank" rel="noopener" class="project-live"><span class="pulse"></span>text-utils-six-azure.vercel.app</a>
             <p>A React app for working on text in the browser. Paste or type, transform it in one click and see live stats. This is where I learned React fundamentals: components, props, state and routing.</p>
             <ul class="project-features">
               <li>One-click text transforms: uppercase, lowercase and clear</li>
@@ -223,7 +226,10 @@
               <li>Multi-page navigation with React Router</li>
             </ul>
             <div class="project-tags"><span>React</span><span>JavaScript (ES6+)</span><span>React Router</span><span>Hooks</span><span>Props &amp; State</span></div>
-            <div class="project-links"><a href="https://github.com/DeepanshuDev09/TextUtils" target="_blank" rel="noopener">View on GitHub ↗</a></div>
+            <div class="project-links">
+              <a href="https://text-utils-six-azure.vercel.app/" target="_blank" rel="noopener">Live App ↗</a>
+              <a href="https://github.com/DeepanshuDev09/TextUtils" target="_blank" rel="noopener" class="ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
           </div>
         </article>
 
